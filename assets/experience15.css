@@ -1,0 +1,133 @@
+:root {
+  --coach-ink: #153447;
+  --coach-teal: #0f7d6d;
+  --coach-mint: #bfe9dc;
+  --coach-sky: #dceeff;
+  --coach-gold: #ffd883;
+  --coach-coral: #ffb5a7;
+}
+body {
+  background:
+    radial-gradient(circle at 8% 12%, rgba(191,233,220,.48), transparent 30rem),
+    radial-gradient(circle at 92% 28%, rgba(220,238,255,.68), transparent 34rem),
+    linear-gradient(180deg, #fbfdfc 0%, #f6faf9 100%);
+  background-attachment: fixed;
+}
+.topbar {
+  background: rgba(255,255,255,.84) !important;
+  border: 1px solid rgba(198,218,216,.75);
+  box-shadow: 0 10px 35px rgba(31,69,83,.09);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+.brandmark {
+  box-shadow: 0 7px 18px rgba(15,125,109,.22);
+  transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease;
+}
+.brand:hover .brandmark, .brand-button:hover .brandmark {
+  transform: rotate(-7deg) scale(1.08);
+  box-shadow: 0 10px 24px rgba(15,125,109,.3);
+}
+.portal-hero-copy h1, .hero-copy h1, .workshop-intro h1, .section-heading h2 {
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+.portal-hero-copy h1, .hero-copy h1 {
+  background: linear-gradient(105deg, #153447 10%, #0f7d6d 55%, #2e68a3 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.portal-card, .example-card, .lesson-card, .method-card, .outcome-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: rgba(255,255,255,.9);
+}
+.portal-card::before, .example-card::before, .lesson-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: linear-gradient(180deg, var(--coach-teal), #6ac7b4);
+  opacity: .82;
+}
+.portal-card::after, .example-card::after, .lesson-card::after {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  right: -65px;
+  top: -72px;
+  border-radius: 50%;
+  background: var(--coach-mint);
+  opacity: .25;
+  z-index: -1;
+  transition: transform .35s ease, opacity .35s ease;
+}
+.portal-card:nth-child(3n+2)::before, .example-card:nth-child(3n+2)::before { background: linear-gradient(180deg,#3979bc,#8ec5f0); }
+.portal-card:nth-child(3n+2)::after, .example-card:nth-child(3n+2)::after { background: var(--coach-sky); }
+.portal-card:nth-child(3n)::before, .example-card:nth-child(3n)::before { background: linear-gradient(180deg,#e6a735,#ffd883); }
+.portal-card:nth-child(3n)::after, .example-card:nth-child(3n)::after { background: var(--coach-gold); }
+.portal-card:hover::after, .example-card:hover::after, .lesson-card:hover::after { transform: scale(1.65); opacity: .38; }
+.portal-card:hover, .example-card:hover, .lesson-card:hover {
+  transform: translateY(-7px) rotateX(1.2deg);
+  box-shadow: 0 22px 46px rgba(26,66,80,.16);
+}
+.portal-card:focus-visible, .example-card:focus-visible, .lesson-card:focus-visible,
+button:focus-visible, a:focus-visible {
+  outline: 3px solid rgba(45,127,185,.42) !important;
+  outline-offset: 3px;
+}
+.primary-button {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 22px rgba(15,125,109,.2);
+}
+.primary-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,.35) 45%, transparent 70%);
+  transform: translateX(-130%);
+  transition: transform .6s ease;
+}
+.primary-button:hover::after { transform: translateX(130%); }
+.eyebrow, .mini-label {
+  letter-spacing: .08em;
+  font-weight: 800;
+}
+.tool-tabs button, .access-switch button, .practice-mode button {
+  border-radius: 999px !important;
+}
+.tool-tabs button:hover, .access-switch button:hover, .practice-mode button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(28,75,88,.12);
+}
+.hero-visual, .method-stack {
+  filter: drop-shadow(0 24px 34px rgba(20,66,80,.13));
+}
+.float-tag { animation: coach-float 4.5s ease-in-out infinite; }
+.tag-two { animation-delay: -1.4s; }
+.tag-three { animation-delay: -2.8s; }
+@keyframes coach-float {
+  0%,100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+.nav-dropdown {
+  border: 1px solid rgba(185,213,209,.78);
+  box-shadow: 0 20px 50px rgba(24,62,76,.16);
+  backdrop-filter: blur(18px);
+}
+.nav-dropdown a, .nav-dropdown button { border-radius: 12px; }
+.nav-dropdown a:hover, .nav-dropdown button:hover { background: linear-gradient(90deg,#eaf7f3,#eef6ff); }
+@media (max-width: 760px) {
+  body { background-attachment: scroll; }
+  .portal-card:hover, .example-card:hover, .lesson-card:hover { transform: none; }
+  .topbar { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .float-tag { animation: none !important; }
+  .portal-card:hover, .example-card:hover, .lesson-card:hover { transform: none; }
+  .primary-button::after { display: none; }
+}
