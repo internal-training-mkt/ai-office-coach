@@ -1,0 +1,67 @@
+@keyframes coach-pop-in {
+  0% { opacity: 0; transform: translateY(18px) scale(.965); }
+  65% { opacity: 1; transform: translateY(-2px) scale(1.006); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes coach-menu-in {
+  0% { opacity: 0; transform: translateY(-8px) scale(.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes coach-soft-pulse {
+  0%, 100% { box-shadow: 0 10px 28px #123b5512; }
+  50% { box-shadow: 0 14px 34px #0e7b6c24; }
+}
+.portal-home:not(.portal-hidden) .portal-hero-copy,
+.portal-home:not(.portal-hidden) .portal-card,
+.workshop-section:not(.view-hidden) .workshop-intro,
+.workshop-section:not(.view-hidden) .access-lab,
+.workshop-section:not(.view-hidden) .tool-lab,
+.workshop-section:not(.view-hidden) .practice-lab,
+.prompt-shell:not(.view-hidden) .prompt-card,
+.prompt-shell:not(.view-hidden) .example-card,
+.learn-shell:not(.view-hidden) .lesson-card {
+  animation: coach-pop-in .52s cubic-bezier(.2,.8,.2,1) both;
+}
+.portal-card:nth-child(2), .example-card:nth-child(2), .lesson-card:nth-child(2) { animation-delay: .06s !important; }
+.portal-card:nth-child(3), .example-card:nth-child(3), .lesson-card:nth-child(3) { animation-delay: .12s !important; }
+.portal-card:nth-child(4), .example-card:nth-child(4), .lesson-card:nth-child(4) { animation-delay: .18s !important; }
+.nav-dropdown, .portal-mobile-menu {
+  animation: coach-menu-in .22s ease-out both;
+  transform-origin: top left;
+}
+.portal-card, .example-card, .method-card, .outcome-card,
+.tool-detail, .exercise-summary, .prompt-card {
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.portal-card:hover, .example-card:hover, .method-card:hover, .outcome-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px #173b521b;
+  border-color: #78b9aa;
+}
+.example-card:active, .portal-card:active, .primary-button:active,
+.secondary-button:active, .text-button:active { transform: translateY(-1px) scale(.985); }
+.primary-button:hover, .example-card:hover small { animation: coach-soft-pulse 1.7s ease-in-out infinite; }
+.nav-menu button, .mobile-nav-button, .primary-button,
+.secondary-button, .text-button {
+  transition: transform .18s ease, background-color .18s ease, box-shadow .18s ease;
+}
+.nav-menu button:hover, .mobile-nav-button:hover { transform: translateY(-2px); }
+@media (max-width: 760px) {
+  .portal-card:hover, .example-card:hover, .method-card:hover, .outcome-card:hover { transform: none; }
+  .portal-home:not(.portal-hidden) .portal-card,
+  .workshop-section:not(.view-hidden) .practice-lab,
+  .prompt-shell:not(.view-hidden) .example-card { animation-duration: .42s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portal-home:not(.portal-hidden) .portal-hero-copy,
+  .portal-home:not(.portal-hidden) .portal-card,
+  .workshop-section:not(.view-hidden) .workshop-intro,
+  .workshop-section:not(.view-hidden) .access-lab,
+  .workshop-section:not(.view-hidden) .tool-lab,
+  .workshop-section:not(.view-hidden) .practice-lab,
+  .prompt-shell:not(.view-hidden) .prompt-card,
+  .prompt-shell:not(.view-hidden) .example-card,
+  .learn-shell:not(.view-hidden) .lesson-card,
+  .nav-dropdown, .portal-mobile-menu,
+  .primary-button:hover, .example-card:hover small { animation: none !important; }
+}
