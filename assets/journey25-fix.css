@@ -27,6 +27,58 @@
   }
 }
 
+.ux-linked-flow25,
+.ux-ppt-preset25 {
+  display: grid;
+  gap: 7px;
+  margin: 0 0 18px;
+  padding: 18px 20px;
+  border: 1px solid #efbb98;
+  border-radius: 20px;
+  background: linear-gradient(135deg,#fff8f1,#fff);
+  color: #53382d;
+}
+
+.ux-linked-flow25 small,
+.ux-ppt-preset25 small {
+  color: #ba4b2c;
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: .12em;
+}
+
+.ux-linked-flow25 p,
+.ux-ppt-preset25 p {
+  margin: 0;
+  color: #745d54;
+}
+
+.ux-ppt-preset25 {
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.ux-ppt-preset25 h3 {
+  margin: 3px 0;
+}
+
+.ux-ppt-preset25 button {
+  border: 0;
+  border-radius: 999px;
+  padding: 13px 18px;
+  background: #c3482a;
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .ux-ppt-preset25 {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ux-hero25 .ux-hero-orbit25 {
     animation: none !important;
