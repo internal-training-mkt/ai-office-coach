@@ -32,3 +32,129 @@
     animation: none !important;
   }
 }
+
+/* Consistent page proportions and centred content. */
+.portal-home,
+.learning-centre,
+.tasks-section,
+.training-hub,
+.practice-lab {
+  width: min(calc(100% - 40px), 1440px) !important;
+  margin-inline: auto !important;
+}
+
+.ux-hero25 {
+  width: 100%;
+  min-height: clamp(430px, 55vh, 590px);
+  margin-inline: auto;
+  padding: clamp(48px, 6vw, 78px) clamp(24px, 5vw, 64px) 92px;
+}
+
+.ux-hero25 .ux-hero-copy25 {
+  width: min(100%, 860px);
+  padding: clamp(28px, 4vw, 48px);
+}
+
+.ux-hero25 .ux-hero-copy25 h1 {
+  max-width: 760px;
+  margin-inline: auto;
+  font-size: clamp(40px, 4.4vw, 66px);
+  line-height: 1.05;
+}
+
+/* Drawer main categories and translated subcategories. */
+.ux-drawer25 {
+  width: min(50vw, 720px);
+}
+
+.ux-drawer25 nav {
+  gap: 13px;
+}
+
+.ux-menu-group25 {
+  padding: 7px;
+  border: 1px solid #d7e6e3;
+  border-radius: 24px;
+  background: rgba(255,255,255,.78);
+}
+
+.ux-menu-group25 > button {
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.ux-menu-group25.active {
+  border-color: #67c4b1;
+  background: #eaf9f5;
+}
+
+.ux-menu-group25 > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 6px;
+  padding: 3px 8px 9px 55px;
+}
+
+.ux-menu-group25 > div button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: #49666c;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ux-menu-group25 > div button:hover {
+  background: #fff;
+  color: #0c7968;
+}
+
+.ux-menu-group25 > div em {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 7px;
+  background: #dff5ef;
+  color: #0c7968;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 900;
+}
+
+@media (max-width: 900px) {
+  .portal-home,
+  .learning-centre,
+  .tasks-section,
+  .training-hub,
+  .practice-lab {
+    width: min(calc(100% - 24px), 1440px) !important;
+  }
+
+  .ux-drawer25 {
+    width: min(82vw, 660px);
+  }
+}
+
+@media (max-width: 620px) {
+  .ux-hero25 {
+    min-height: 500px;
+    padding: 46px 14px 122px;
+  }
+
+  .ux-hero25 .ux-hero-copy25 h1 {
+    font-size: 38px;
+  }
+
+  .ux-menu-group25 > div {
+    grid-template-columns: 1fr;
+    padding-left: 52px;
+  }
+}
+git
