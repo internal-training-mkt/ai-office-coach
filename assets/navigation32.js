@@ -67,7 +67,7 @@
   Object.entries(HASHES).forEach(([route, hashes]) => hashes.forEach((hash, index) => { hashMap[hash] = [route, index]; }));
   const lang = () => document.querySelector('.ui-language select')?.value || 'English';
   const words = () => CONTENT[lang()] || CONTENT.English;
-  const isVisible = el => !!el && !el.classList.contains('view-hidden') && el.getClientRects().length > 0;
+  const isVisible = el => !!el && el.getClientRects().length > 0 && getComputedStyle(el).display !== 'none' && getComputedStyle(el).visibility !== 'hidden';
   const routeVisible = route => route === 'home' ? isVisible(document.querySelector('.portal-home')) : route === 'learn' ? isVisible(document.querySelector('.learning-centre')) : route === 'prompt' ? isVisible(document.querySelector('.tasks-section')) : isVisible(document.querySelector('#workshop-legacy'));
 
   function closeDrawer() {
@@ -92,7 +92,7 @@
 
   function targetFor(route, index) {
     const selectors = TARGETS[route] || [];
-    return document.querySelector(selectors[index]);
+    return document.getElementById(HASHES[route]?.[index]) || document.querySelector(selectors[index]);
   }
 
   function focusTarget(route, index, writeHash = true, attempt = 0, done) {
@@ -106,7 +106,10 @@
     }
     document.querySelectorAll('.ux-section-focus32').forEach(el => el.classList.remove('ux-section-focus32'));
     target.scrollIntoView({ behavior: 'auto', block: 'start' });
-    if (writeHash) history.replaceState(null, '', `#${HASHES[route][index]}`);
+    if (writeHash) {
+      const nextHash = `#${HASHES[route][index]}`;
+      if (location.hash !== nextHash) history.pushState(null, '', nextHash);
+    }
     requestAnimationFrame(() => {
       target.classList.add('ux-section-focus32');
       setTimeout(() => target.classList.remove('ux-section-focus32'), 1500);
@@ -116,7 +119,8 @@
 
   function navigate(route, index, writeHash = true) {
     closeDrawer();
-    openRoute(route, () => focusTarget(route, index, writeHash));
+    window.AIOfficeEffects?.begin();
+    openRoute(route, () => focusTarget(route, index, writeHash, 0, () => window.AIOfficeEffects?.end()));
   }
 
   function refreshAnchors() {
