@@ -41,6 +41,29 @@
     setTimeout(() => { window.scrollTo({ top: 0, behavior: 'auto' }); window.AIOfficeEffects.end(); }, 90);
   }
 
+  function goWorkshopTop() {
+    window.AIOfficeEffects.begin();
+    document.querySelectorAll('.portal-nav .nav-menu > button')[2]?.click();
+    let attempts = 0;
+    const settle = () => {
+      const workshop = document.querySelector('#workshop-legacy');
+      if ((!workshop || !workshop.getClientRects().length) && attempts++ < 40) { setTimeout(settle, 60); return; }
+      if (!workshop) { window.AIOfficeEffects.end(); return; }
+      history.pushState(null, '', '#workshop');
+      const focusTop = () => {
+        const current = document.querySelector('#workshop-legacy');
+        if (!current?.getClientRects().length) return;
+        const headerOffset = Math.min(96, document.querySelector('.portal-nav')?.getBoundingClientRect().height || 0);
+        const top = current.getBoundingClientRect().top + window.scrollY - headerOffset - 12;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+      };
+      focusTop();
+      [100, 260].forEach(delay => setTimeout(focusTop, delay));
+      setTimeout(() => window.AIOfficeEffects.end(), 180);
+    };
+    setTimeout(settle, 50);
+  }
+
   function promptFooter() {
     const examples = document.querySelector('.examples-section');
     if (!examples) return;
@@ -53,7 +76,7 @@
     footer.innerHTML = `<div><small>${w.chapter}</small><h2>${w.workshop}</h2></div><nav><button type="button" data-prompt-top>↑ ${w.top}</button><button type="button" data-prompt-home>⌂ ${w.home}</button><button type="button" class="primary" data-prompt-next>${w.next}<span>→</span></button></nav>`;
     footer.querySelector('[data-prompt-top]').onclick = promptTop;
     footer.querySelector('[data-prompt-home]').onclick = goHome;
-    footer.querySelector('[data-prompt-next]').onclick = () => window.AIOfficeNavigation?.navigate('workshop', 0);
+    footer.querySelector('[data-prompt-next]').onclick = goWorkshopTop;
   }
 
   function showReady() {
