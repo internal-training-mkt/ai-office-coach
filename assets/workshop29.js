@@ -34,6 +34,7 @@
     'Create formulas and PivotTables': ['Create formulas and PivotTables', '建立公式及樞紐分析表', '建立公式及数据透视表', '数式とピボットテーブルを作成', '수식 및 피벗 테이블 작성'],
     'Find trends, risks and outliers': ['Find trends, risks and outliers', '找出趨勢、風險及異常值', '找出趋势、风险及异常值', '傾向・リスク・外れ値を特定', '추세, 위험 및 이상치 찾기'],
     'MISSION': ['MISSION', '任務', '任务', 'ミッション', '미션'], 'WORK MISSION': ['WORK MISSION', '工作任務', '工作任务', '業務ミッション', '업무 미션'],
+    'Preparing your practice prompt…': ['Preparing your practice prompt…', '正在準備你的練習提示詞…', '正在准备你的练习提示词…', '演習プロンプトを準備しています…', '실습 프롬프트를 준비하고 있습니다…'],
     'Practice settings are ready. Review or edit them before copying.': ['Practice settings are ready. Review or edit them before copying.', '練習設定已準備好。複製前請檢查或修改內容。', '练习设置已准备好。复制前请检查或修改内容。', '演習設定の準備ができました。コピーする前に確認または編集してください。', '실습 설정이 준비되었습니다. 복사하기 전에 검토하거나 수정하세요.']
   };
 
@@ -69,6 +70,25 @@
   const setValue = (el, value) => { if (!el) return; const proto = el.tagName === 'TEXTAREA' ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype; const setter = Object.getOwnPropertyDescriptor(proto, 'value')?.set; setter ? setter.call(el, value) : (el.value = value); fire(el); };
   const choose = (select, index) => { if (!select || !select.options.length) return; select.selectedIndex = Math.min(index, select.options.length - 1); fire(select); };
 
+  function showTransition() {
+    let overlay = document.querySelector('.ux-practice-transition33');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'ux-practice-transition33';
+      overlay.setAttribute('role', 'status');
+      overlay.innerHTML = '<span></span><b></b>';
+      document.body.append(overlay);
+    }
+    overlay.querySelector('b').textContent = localized(workshopText['Preparing your practice prompt…']);
+    requestAnimationFrame(() => overlay.classList.add('show'));
+  }
+
+  function hideTransition() {
+    const overlay = document.querySelector('.ux-practice-transition33');
+    overlay?.classList.remove('show');
+    setTimeout(() => overlay?.remove(), 220);
+  }
+
   function removeUnwantedExercises() {
     ['#practice-email', '#practice-risk'].forEach(selector => document.querySelector(selector)?.remove());
   }
@@ -96,6 +116,16 @@
       builder.prepend(notice);
     }
     notice.textContent = localized(workshopText['Practice settings are ready. Review or edit them before copying.']);
+  }
+
+  function focusBriefPosition() {
+    const current = document.querySelector('.builder-section');
+    if (!current || current.classList.contains('view-hidden')) return false;
+    history.replaceState(null, '', '#prompt-brief');
+    const headerOffset = Math.min(96, document.querySelector('.portal-nav')?.getBoundingClientRect().height || 0);
+    const top = current.getBoundingClientRect().top + window.scrollY - headerOffset - 12;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+    return true;
   }
 
   function applyPracticePreset(kind) {
@@ -133,11 +163,14 @@
         }
       }
       showPresetNotice(builder);
-      history.replaceState(null, '', '#prompt-brief');
       builder.classList.add('ux-preset-highlight30');
-      builder.scrollIntoView({ behavior: 'auto', block: 'start' });
+      focusBriefPosition();
+      [80, 220, 480].forEach(delay => setTimeout(() => {
+        focusBriefPosition();
+        if (delay === 220) hideTransition();
+      }, delay));
       setTimeout(() => builder.classList.remove('ux-preset-highlight30'), 1500);
-    }, 420);
+    }, 180);
   }
 
   function completePendingPractice() {
@@ -174,16 +207,14 @@
       const kind = card?.id === 'practice-slides' ? 'powerpoint' : card?.id === 'practice-document' ? 'word' : 'excel';
       pendingPractice = kind;
       fillingPractice = false;
-      const home = document.querySelector('.portal-nav > button');
-      const openPrompt = () => {
-        const cards = document.querySelectorAll('.portal-card-grid > button, .portal-card-grid > a');
-        cards[1]?.click();
-      };
-      if (document.querySelector('.portal-home')?.classList.contains('view-hidden')) {
-        home?.click();
-        setTimeout(openPrompt, 100);
-      } else openPrompt();
-      setTimeout(() => waitForPendingPractice(), 120);
+      showTransition();
+      if (window.AIOfficeNavigation?.openBrief) {
+        window.AIOfficeNavigation.openBrief(() => completePendingPractice());
+      } else {
+        document.querySelectorAll('.portal-nav .nav-menu > button')[1]?.click();
+        setTimeout(() => waitForPendingPractice(), 80);
+      }
+      setTimeout(() => { if (pendingPractice) waitForPendingPractice(); }, 240);
     }, true);
   }
 
