@@ -38,7 +38,37 @@
   function show(hash='demo-top'){document.body.classList.add('ux-demo-active37');render();requestAnimationFrame(()=>{document.getElementById(hash)?.scrollIntoView({behavior:'auto',block:'start'});history.replaceState(null,'',`#${hash}`);});}
   function leave(){document.body.classList.remove('ux-demo-active37');}
   function workshop(){leave();window.AIOfficeNavigation?.navigate('workshop',2);}
-  function refreshNav(){const w=words(),nav=document.querySelector('.portal-nav');if(nav&&!nav.querySelector('.ux-demo-nav37')){const menu=document.createElement('div');menu.className='nav-menu ux-demo-nav37';nav.append(menu);}const menu=nav?.querySelector('.ux-demo-nav37'),base=nav?[...nav.querySelectorAll('.nav-menu:not(.ux-demo-nav37)')]:[];base.forEach((m,i)=>m.style.order=String(i===2?40:(i+1)*10));if(menu){menu.style.order='30';menu.hidden=false;menu.removeAttribute('hidden');menu.removeAttribute('aria-hidden');menu.removeAttribute('inert');menu.innerHTML=`<button type="button" data-open-demo>${w.nav}<span>⌄</span></button><div class="nav-dropdown">${w.menu.map((x,i)=>`<button type="button" data-demo-sub="${['demo-tour','demo-sales','demo-prompts','demo-try'][i]}">${String(i+1).padStart(2,'0')} · ${x}</button>`).join('')}</div>`;}const drawer=document.querySelector('.ux-drawer25');if(drawer&&!drawer.querySelector('.ux-demo-drawer37')){const g=document.createElement('section');g.className='ux-demo-drawer37';const workshop=drawer.querySelector('[data-route="workshop"]')?.closest('.ux-menu-group25');workshop?workshop.before(g):drawer.append(g);}const g=drawer?.querySelector('.ux-demo-drawer37');if(g)g.innerHTML=`<button type="button" data-open-demo>${w.nav}</button><div>${w.menu.map((x,i)=>`<button type="button" data-demo-sub="${['demo-tour','demo-sales','demo-prompts','demo-try'][i]}">${String(i+1).padStart(2,'0')} · ${x}</button>`).join('')}</div>`;}
+  function refreshNav(){
+    const w=words(),nav=document.querySelector('.portal-nav');
+    if(nav&&!nav.querySelector('.ux-demo-nav37')){
+      const menu=document.createElement('div');
+      menu.className='nav-menu ux-demo-nav37';
+      nav.append(menu);
+    }
+    const menu=nav?.querySelector('.ux-demo-nav37'),base=nav?[...nav.querySelectorAll('.nav-menu:not(.ux-demo-nav37)')]:[];
+    base.forEach((m,i)=>m.style.order=String(i===2?50:(i+1)*10));
+    if(menu){
+      menu.style.order='40';
+      menu.hidden=false;
+      menu.removeAttribute('hidden');
+      menu.removeAttribute('aria-hidden');
+      menu.removeAttribute('inert');
+      menu.innerHTML=`<button type="button" data-open-demo>${w.nav}<span>⌄</span></button><div class="nav-dropdown">${w.menu.map((x,i)=>`<button type="button" data-demo-sub="${['demo-tour','demo-sales','demo-prompts','demo-try'][i]}">${String(i+1).padStart(2,'0')} · ${x}</button>`).join('')}</div>`;
+    }
+    const drawer=document.querySelector('.ux-drawer25'),drawerNav=drawer?.querySelector('nav');
+    if(drawerNav&&!drawerNav.querySelector('.ux-demo-drawer37')){
+      const g=document.createElement('section'),workshop=drawerNav.querySelector('[data-route="workshop"]')?.closest('.ux-menu-group25');
+      g.className='ux-menu-group25 ux-demo-drawer37';
+      workshop?workshop.before(g):drawerNav.append(g);
+    }
+    const g=drawerNav?.querySelector('.ux-demo-drawer37');
+    if(g){
+      g.className='ux-menu-group25 ux-demo-drawer37';
+      g.innerHTML=`<button type="button" data-open-demo><span>04</span><b>${w.nav}</b><i>→</i></button><div>${w.menu.map((x,i)=>`<button type="button" data-demo-sub="${['demo-tour','demo-sales','demo-prompts','demo-try'][i]}"><em>${i+1}</em>${x}</button>`).join('')}</div>`;
+    }
+    const workshopNumber=drawerNav?.querySelector('[data-route="workshop"] span');
+    if(workshopNumber)workshopNumber.textContent='05';
+  }
   document.addEventListener('click',e=>{const reveal=e.target.closest('.ux-demo-card37 [data-reveal]');if(reveal){e.preventDefault();e.stopImmediatePropagation();reveal.closest('.ux-demo-card37').classList.toggle('is-flipped');return;}const copy=e.target.closest('.ux-demo-card37 [data-copy]');if(copy){e.preventDefault();e.stopImmediatePropagation();const text=copy.closest('.ux-demo-card-back37').querySelector('pre').textContent;navigator.clipboard?.writeText(text);copy.textContent=words().copied;setTimeout(()=>copy.textContent=words().copy,1500);}},true);
   document.addEventListener('click',e=>{const open=e.target.closest('[data-open-demo]');if(open){e.preventDefault();e.stopImmediatePropagation();show();return;}const sub=e.target.closest('[data-demo-sub]');if(sub){e.preventDefault();e.stopImmediatePropagation();show(sub.dataset.demoSub);return;}if(document.body.classList.contains('ux-demo-active37')&&e.target.closest('.portal-nav button:not([data-open-demo]),.ux-drawer25 [data-route]'))leave();const jump=e.target.closest('[data-jump]');if(jump){document.getElementById(jump.dataset.jump)?.scrollIntoView({behavior:'smooth',block:'start'});history.replaceState(null,'',`#${jump.dataset.jump}`);}const reveal=e.target.closest('[data-reveal]');if(reveal){const p=reveal.parentElement.querySelector('.ux-demo-prompt37');p.hidden=!p.hidden;reveal.textContent=p.hidden?words().show:words().hide;}const cp=e.target.closest('[data-copy]');if(cp){const txt=cp.parentElement.querySelector('pre').textContent;navigator.clipboard?.writeText(txt);cp.textContent=words().copied;setTimeout(()=>cp.textContent=words().copy,1500);}const f=e.target.closest('[data-filter]');if(f){filter=f.dataset.filter;root().querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('active',x===f));applyFilter();}if(e.target.closest('[data-workshop]'))workshop();if(e.target.closest('[data-demo-home]')){leave();document.querySelector('.portal-nav > button')?.click();history.replaceState(null,'',location.pathname+location.search);}},true);
   document.addEventListener('change',e=>{if(e.target.closest('.ui-language'))setTimeout(()=>{render();refreshNav();},100)});
