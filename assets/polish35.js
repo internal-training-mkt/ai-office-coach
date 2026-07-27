@@ -24,7 +24,7 @@
 
   function cleanLegacyPractice() {
     document.querySelectorAll('.portal-card-grid > *').forEach((card, index) => { if (index >= 3) { card.hidden = true; card.setAttribute('aria-hidden', 'true'); card.setAttribute('inert', ''); } });
-    document.querySelectorAll('.portal-nav .nav-menu').forEach((menu, index) => { if (index >= 3 && !menu.classList.contains('ux-demo-nav37')) { menu.hidden = true; menu.setAttribute('aria-hidden', 'true'); menu.setAttribute('inert', ''); } });
+    document.querySelectorAll('.portal-nav .nav-menu').forEach((menu, index) => { if (index >= 3) { menu.hidden = true; menu.setAttribute('aria-hidden', 'true'); menu.setAttribute('inert', ''); } });
     const legacy = document.querySelector('.training-hub');
     if (legacy) { legacy.hidden = true; legacy.setAttribute('aria-hidden', 'true'); legacy.setAttribute('inert', ''); }
   }
