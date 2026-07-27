@@ -39,6 +39,11 @@
   color: #53382d;
 }
 
+/* The workshop contains all practice activities; no separate Practice page. */
+.practice-lab {
+  display: none !important;
+}
+
 .ux-linked-flow25 small,
 .ux-ppt-preset25 small {
   color: #ba4b2c;
@@ -209,4 +214,273 @@
     padding-left: 52px;
   }
 }
-git
+
+/* Version 26: practice belongs inside Workshop, not in a fifth page. */
+body[data-ux-route25="workshop"] #workshop-legacy,
+body[data-ux-route25="workshop"] .practice-lab {
+  display: block !important;
+}
+
+.exercise-card.open .exercise-body,
+.exercise-card.ux-open .exercise-body {
+  display: grid !important;
+}
+
+body[data-ux-route25="prompt"] .ux-chapter25 {
+  display: none !important;
+}
+
+/* Version 28: keep one Workshop implementation and remove its duplicate. */
+.ux-bottom-cta,
+.training-hub {
+  display: none !important;
+}
+
+/* Workshop 29: keep three focused, connected practice missions. */
+#practice-email,
+#practice-risk {
+  display: none !important;
+}
+
+.ux-preset-notice29 {
+  margin: 0 auto 22px;
+  max-width: 1180px;
+  padding: 15px 18px;
+  border: 1px solid #8bcfc0;
+  border-radius: 16px;
+  color: #0c564d;
+  background: #eaf9f5;
+  font-weight: 800;
+  box-shadow: 0 10px 25px rgba(15, 107, 95, .08);
+}
+
+.ux-preset-highlight30 {
+  animation: uxPresetReady30 1.45s ease both;
+}
+
+@keyframes uxPresetReady30 {
+  0%, 100% { box-shadow: none; }
+  35% { box-shadow: 0 0 0 6px rgba(39, 181, 154, .18), 0 24px 65px rgba(15, 107, 95, .17); }
+}
+
+.ux-prompt-footer30 {
+  max-width: 1180px;
+  margin: 54px auto 16px;
+  padding: 24px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #123942, #0f7669);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.ux-prompt-footer30 button {
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 999px;
+  padding: 13px 18px;
+  color: #fff;
+  background: transparent;
+  font-weight: 800;
+}
+
+.ux-prompt-footer30 button.primary {
+  border-color: #fff;
+  color: #10594f;
+  background: #fff;
+}
+
+[id^="ux-learn-lesson-"],
+#ux-prompt-profile30,
+#ux-prompt-work30,
+#ux-prompt-settings30,
+#ux-prompt-examples30,
+#ux-workshop-access30,
+#ux-workshop-tools30,
+#ux-workshop-mission30,
+#ux-workshop-practice30 {
+  scroll-margin-top: 110px;
+}
+
+@media (max-width: 680px) {
+  .ux-prompt-footer30 { flex-direction: column; }
+  .ux-prompt-footer30 button { width: 100%; }
+}
+
+/* Compact Workshop Practice: downloads live inside their related exercise. */
+#workshop-legacy .practice-heading,
+#workshop-legacy > .support-downloads,
+#workshop-legacy .practice-lab > .support-downloads,
+.ux-linked-flow25,
+.ux-ppt-preset25 {
+  display: none !important;
+}
+
+#workshop-legacy .public-scenario {
+  display: none !important;
+}
+
+.ux-practice-compact31 {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  align-items: center;
+  gap: 16px;
+  margin: 4px 0 24px;
+  padding: 22px 24px;
+  border: 1px solid #cfe2dd;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #f1fbf8, #f3f8ff);
+  scroll-margin-top: 110px;
+}
+
+.ux-practice-compact31 > small {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 15px;
+  color: #fff;
+  background: #0f7669;
+  font-weight: 900;
+}
+
+.ux-practice-compact31 h2 { margin: 0 0 5px; font-size: clamp(24px, 3vw, 36px); }
+.ux-practice-compact31 p { margin: 0; color: #60777b; line-height: 1.5; }
+
+#workshop-legacy .exercise-body {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, .9fr);
+  gap: 18px;
+}
+
+#workshop-legacy .exercise-body > .mini-label,
+#workshop-legacy .exercise-body > ol { grid-column: 1; }
+#workshop-legacy .exercise-body > .verify-box { grid-column: 2; grid-row: 1 / span 2; }
+#workshop-legacy .exercise-body > .exercise-actions,
+#workshop-legacy .exercise-body > .outcome-area,
+#workshop-legacy .exercise-body > .ux-exercise-safety31 { grid-column: 1 / -1; }
+
+.ux-exercise-downloads31 {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid #d6e7e3;
+  border-radius: 15px;
+  background: #f5faf9;
+}
+
+.ux-exercise-downloads31 > small { grid-column: 1 / -1; color: #47746b; font-weight: 900; }
+.ux-exercise-downloads31 a {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 2px 10px;
+  align-items: center;
+  padding: 11px 12px;
+  border: 1px solid #bedbd4;
+  border-radius: 12px;
+  color: #145f54;
+  background: #fff;
+  text-decoration: none;
+}
+.ux-exercise-downloads31 a span { grid-row: 1 / span 2; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; color: #fff; background: #15745f; font-weight: 900; }
+.ux-exercise-downloads31 a b { font-size: 12px; }
+.ux-exercise-downloads31 a small { color: #6c8580; font-size: 10px; }
+.ux-exercise-safety31 { margin: 0; padding: 10px 13px; border-radius: 11px; color: #685619; background: #fff8dc; font-size: 11px; font-weight: 700; }
+
+#workshop-legacy .exercise-actions button { width: 100%; text-align: center; }
+
+@media (max-width: 760px) {
+  #workshop-legacy .exercise-body,
+  .ux-exercise-downloads31 { grid-template-columns: 1fr; }
+  #workshop-legacy .exercise-body > .verify-box { grid-column: 1; grid-row: auto; }
+  .ux-exercise-downloads31 > small { grid-column: 1; }
+}
+
+body[data-ux-route25="prompt"] .ux-wizard-nav {
+  display: none !important;
+}
+
+body[data-ux-route25="prompt"] .ux-wizard-section,
+body[data-ux-route25="prompt"] .ux-wizard-part {
+  display: block !important;
+}
+
+body[data-ux-route25="prompt"] .form-panel > .panel-top,
+body[data-ux-route25="prompt"] .form-panel > .advanced-toggle {
+  display: flex !important;
+}
+
+body[data-ux-route25="prompt"] .prompt-panel .copy-button {
+  width: calc(100% - 42px) !important;
+  max-width: calc(100% - 42px) !important;
+  min-width: 0 !important;
+  margin-inline: 21px !important;
+  box-sizing: border-box !important;
+  justify-content: space-between !important;
+}
+
+.ux-section-focus25 {
+  scroll-margin-top: 112px;
+  animation: ux25SectionFocus 1.8s ease both;
+}
+
+@keyframes ux25SectionFocus {
+  0%, 100% { box-shadow: inherit; }
+  18%, 72% {
+    box-shadow: 0 0 0 5px rgba(112, 216, 194, .45), 0 24px 52px rgba(18, 57, 66, .16);
+  }
+}
+
+.ux-linked-flow25 nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.ux-linked-flow25 nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 10px 14px;
+  border: 1px solid #a8d9cf;
+  border-radius: 999px;
+  background: #fff;
+  color: #0c6f61;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.ux-linked-flow25 nav a:hover {
+  border-color: #0e806e;
+  background: #eaf8f5;
+}
+
+.ux-view-toggle button[hidden] {
+  display: none !important;
+}
+
+.ux-view-toggle button:last-child {
+  min-width: 150px;
+}
+
+.tasks-section > .ux-profile25 {
+  margin-top: 28px;
+  scroll-margin-top: 112px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ux-section-focus25 {
+    animation: none;
+    outline: 4px solid rgba(112, 216, 194, .45);
+    outline-offset: 4px;
+  }
+}
+/* Final calm section navigation: direct positioning plus one soft confirmation. */
+[id^="home-"], [id^="learn-"], [id^="prompt-"], [id^="workshop-"] { scroll-margin-top: 92px; }
+.ux-section-focus32 { animation: ux-focus32 1.5s ease-out 1; }
+@keyframes ux-focus32 { 0%, 24% { box-shadow: 0 0 0 7px rgba(80, 205, 178, .22); } 100% { box-shadow: 0 0 0 0 rgba(80, 205, 178, 0); } }
+.ux-nav-toast32 { position: fixed; left: 50%; bottom: 24px; z-index: 9999; max-width: min(560px, calc(100vw - 32px)); padding: 12px 18px; border-radius: 999px; color: #fff; background: #123942; box-shadow: 0 12px 32px rgba(18,57,66,.22); opacity: 0; pointer-events: none; transform: translate(-50%, 8px); transition: opacity .2s ease, transform .2s ease; }
+.ux-nav-toast32.show { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: reduce) { .ux-section-focus32 { animation: none; outline: 3px solid rgba(80,205,178,.4); } .ux-nav-toast32 { transition: none; } }
