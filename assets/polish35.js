@@ -73,7 +73,8 @@
     if (footer.dataset.key === key) return;
     footer.dataset.key = key;
     const w = words();
-    footer.innerHTML = `<div><small>${w.chapter}</small><h2>${w.workshop}</h2></div><nav><button type="button" data-prompt-top>↑ ${w.top}</button><button type="button" data-prompt-home>⌂ ${w.home}</button><button type="button" class="primary" data-prompt-next>${w.next}<span>→</span></button></nav>`;
+    footer.innerHTML = `<a href="#workshop" class="ux-prompt-destination35" data-prompt-workshop><small>${w.chapter}</small><h2>${w.workshop}</h2></a><nav><button type="button" data-prompt-top>↑ ${w.top}</button><button type="button" data-prompt-home>⌂ ${w.home}</button><button type="button" class="primary" data-prompt-next>${w.next}<span>→</span></button></nav>`;
+    footer.querySelector('[data-prompt-workshop]').onclick = event => { event.preventDefault(); goWorkshopTop(); };
     footer.querySelector('[data-prompt-top]').onclick = promptTop;
     footer.querySelector('[data-prompt-home]').onclick = goHome;
     footer.querySelector('[data-prompt-next]').onclick = goWorkshopTop;
