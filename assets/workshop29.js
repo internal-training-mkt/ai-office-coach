@@ -152,6 +152,16 @@
     }, 900);
   }
 
+  function waitForPendingPractice(attempt = 0) {
+    if (!pendingPractice || fillingPractice) return;
+    const builder = document.querySelector('.builder-section');
+    if (builder && !builder.classList.contains('view-hidden') && builder.getClientRects().length) {
+      completePendingPractice();
+      return;
+    }
+    if (attempt < 40) setTimeout(() => waitForPendingPractice(attempt + 1), 100);
+  }
+
   function bindPracticeBuilder() {
     if (document.documentElement.dataset.workshopPreset29) return;
     document.documentElement.dataset.workshopPreset29 = '1';
@@ -173,7 +183,7 @@
         home?.click();
         setTimeout(openPrompt, 100);
       } else openPrompt();
-      setTimeout(completePendingPractice, 180);
+      setTimeout(() => waitForPendingPractice(), 120);
     }, true);
   }
 
