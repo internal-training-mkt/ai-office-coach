@@ -53,7 +53,7 @@
       menu.removeAttribute('hidden');
       menu.removeAttribute('aria-hidden');
       menu.removeAttribute('inert');
-      menu.innerHTML=`<button type="button" data-open-demo>${w.nav}<span>⌄</span></button><div class="nav-dropdown">${w.menu.map((x,i)=>`<button type="button" data-demo-sub="${['demo-tour','demo-sales','demo-prompts','demo-try'][i]}">${String(i+1).padStart(2,'0')} · ${x}</button>`).join('')}</div>`;
+      menu.innerHTML=`<a href="#demo-top" data-open-demo>${w.nav}<span>⌄</span></a><div class="nav-dropdown">${w.menu.map((x,i)=>`<a href="#${['demo-tour','demo-sales','demo-prompts','demo-try'][i]}" data-demo-sub="${['demo-tour','demo-sales','demo-prompts','demo-try'][i]}">${String(i+1).padStart(2,'0')} · ${x}</a>`).join('')}</div>`;
     }
     const drawer=document.querySelector('.ux-drawer25'),drawerNav=drawer?.querySelector('nav');
     if(drawerNav&&!drawerNav.querySelector('.ux-demo-drawer37')){
@@ -64,7 +64,7 @@
     const g=drawerNav?.querySelector('.ux-demo-drawer37');
     if(g){
       g.className='ux-menu-group25 ux-demo-drawer37';
-      g.innerHTML=`<button type="button" data-open-demo><span>04</span><b>${w.nav}</b><i>→</i></button><div>${w.menu.map((x,i)=>`<button type="button" data-demo-sub="${['demo-tour','demo-sales','demo-prompts','demo-try'][i]}"><em>${i+1}</em>${x}</button>`).join('')}</div>`;
+      g.innerHTML=`<a href="#demo-top" data-open-demo><span>04</span><b>${w.nav}</b><i>→</i></a><div>${w.menu.map((x,i)=>`<a href="#${['demo-tour','demo-sales','demo-prompts','demo-try'][i]}" data-demo-sub="${['demo-tour','demo-sales','demo-prompts','demo-try'][i]}"><em>${i+1}</em>${x}</a>`).join('')}</div>`;
     }
     const workshopNumber=drawerNav?.querySelector('[data-route="workshop"] span');
     if(workshopNumber)workshopNumber.textContent='05';
