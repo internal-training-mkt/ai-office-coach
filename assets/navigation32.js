@@ -78,20 +78,16 @@
   function openRoute(route, done, attempt = 0) {
     if (routeVisible(route)) { done?.(); return; }
     if (attempt > 24) { toast(words().missing); return; }
-    const home = document.querySelector('.portal-home');
     if (route === 'home') {
       document.querySelector('.portal-nav > button')?.click();
       setTimeout(() => openRoute(route, done, attempt + 1), 50);
       return;
     }
-    if (!isVisible(home)) {
-      document.querySelector('.portal-nav > button')?.click();
-      setTimeout(() => openRoute(route, done, attempt + 1), 55);
-      return;
-    }
     const index = { learn: 0, prompt: 1, workshop: 2 }[route];
-    document.querySelectorAll('.portal-card-grid > button, .portal-card-grid > a')[index]?.click();
-    setTimeout(() => openRoute(route, done, attempt + 1), 65);
+    const directButton = document.querySelectorAll('.portal-nav .nav-menu > button')[index];
+    if (directButton) directButton.click();
+    else document.querySelectorAll('.portal-card-grid > button, .portal-card-grid > a')[index]?.click();
+    setTimeout(() => openRoute(route, done, attempt + 1), 45);
   }
 
   function targetFor(route, index) {
@@ -99,11 +95,15 @@
     return document.querySelector(selectors[index]);
   }
 
-  function focusTarget(route, index, writeHash = true, attempt = 0) {
+  function focusTarget(route, index, writeHash = true, attempt = 0, done) {
     refreshAnchors();
     const target = targetFor(route, index);
-    if (!target && attempt < 18) { setTimeout(() => focusTarget(route, index, writeHash, attempt + 1), 60); return; }
-    if (!target) { toast(words().missing); return; }
+    if (!target && attempt < 50) { setTimeout(() => focusTarget(route, index, writeHash, attempt + 1, done), 80); return; }
+    if (!target) {
+      const routeRoot = route === 'workshop' ? document.querySelector('#workshop-legacy') : route === 'prompt' ? document.querySelector('.tasks-section') : route === 'learn' ? document.querySelector('.learning-centre') : document.querySelector('.portal-home');
+      if (routeRoot && routeVisible(route)) { routeRoot.scrollIntoView({ behavior: 'auto', block: 'start' }); return; }
+      toast(words().missing); return;
+    }
     document.querySelectorAll('.ux-section-focus32').forEach(el => el.classList.remove('ux-section-focus32'));
     target.scrollIntoView({ behavior: 'auto', block: 'start' });
     if (writeHash) history.replaceState(null, '', `#${HASHES[route][index]}`);
@@ -111,6 +111,7 @@
       target.classList.add('ux-section-focus32');
       setTimeout(() => target.classList.remove('ux-section-focus32'), 1500);
     });
+    done?.(target);
   }
 
   function navigate(route, index, writeHash = true) {
@@ -180,7 +181,7 @@
     });
   }
 
-  function goBrief() { openRoute('prompt', () => focusTarget('prompt', 2)); }
+  function goBrief(done) { openRoute('prompt', () => focusTarget('prompt', 2, true, 0, done)); }
 
   function bind() {
     if (document.documentElement.dataset.navigation32) return;
@@ -238,6 +239,7 @@
   }
 
   bind();
+  window.AIOfficeNavigation = { navigate, openBrief: goBrief, routeVisible };
   new MutationObserver(refresh).observe(document.documentElement, { childList: true, subtree: true });
   [80, 300, 800, 1600].forEach(delay => setTimeout(refresh, delay));
   setTimeout(handleHash, 500);
