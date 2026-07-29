@@ -1,0 +1,290 @@
+/* Mobile-only refinement for AI Office Coach. Desktop styles remain unchanged. */
+@media (max-width: 720px) {
+  html { scroll-padding-top: 86px; }
+  body { overflow-x: hidden; }
+  button, a, select { touch-action: manipulation; }
+  #workshop-legacy {
+    box-sizing: border-box;
+    padding: 24px 16px 48px !important;
+  }
+  #workshop-legacy .ux-page-art.art-2 {
+    width: 100%;
+    height: 64px;
+    margin: 0 0 14px;
+    border-radius: 18px;
+  }
+  #workshop-legacy .workshop-intro {
+    width: 100%;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  #workshop-legacy .workshop-intro h2 {
+    font-size: clamp(34px, 10.5vw, 44px);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+  }
+  #workshop-legacy .workshop-intro-copy > p {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  #workshop-legacy .work-cycle {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 6px;
+    margin-top: 20px;
+  }
+  #workshop-legacy .work-cycle span {
+    min-width: 0;
+    padding-top: 12px;
+    font-size: 10px;
+    line-height: 1.2;
+    text-align: center;
+  }
+  #workshop-legacy .work-cycle span b {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 9px;
+  }
+
+  #workshop-legacy .access-lab,
+  #workshop-legacy .tool-lab {
+    width: 100%;
+    margin-bottom: 54px;
+  }
+  #workshop-legacy .access-lab {
+    border-radius: 22px;
+  }
+  #workshop-legacy .access-copy,
+  #workshop-legacy .access-result {
+    padding: 22px 18px;
+  }
+  #workshop-legacy .access-copy h3,
+  #workshop-legacy .access-result h3 {
+    font-size: 27px;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+  }
+  #workshop-legacy .access-copy > p,
+  #workshop-legacy .access-result li,
+  #workshop-legacy .license-note,
+  #workshop-legacy .human-note {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  #workshop-legacy .access-switch {
+    width: 100%;
+    gap: 4px;
+  }
+  #workshop-legacy .access-switch button {
+    min-width: 0;
+    min-height: 68px;
+    padding: 10px 8px;
+  }
+
+  #workshop-legacy .section-heading.compact-heading {
+    width: 100%;
+    margin-bottom: 18px;
+  }
+  #workshop-legacy .section-heading h2 {
+    font-size: clamp(34px, 10vw, 42px);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+  #workshop-legacy .section-heading > p {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  #workshop-legacy .tool-tabs {
+    display: flex;
+    width: calc(100% + 16px);
+    margin: 0 -8px 10px;
+    padding: 2px 8px 8px;
+    gap: 8px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  #workshop-legacy .tool-tabs::-webkit-scrollbar { display: none; }
+  #workshop-legacy .tool-tabs button {
+    flex: 0 0 auto;
+    min-width: 112px;
+    min-height: 48px;
+    padding: 10px 14px;
+    scroll-snap-align: start;
+    white-space: nowrap;
+  }
+  #workshop-legacy .tool-detail {
+    width: 100%;
+    border-radius: 20px;
+  }
+  #workshop-legacy .tool-detail > div {
+    padding: 22px 20px;
+  }
+  #workshop-legacy .tool-detail .app-block {
+    min-height: 176px;
+    padding: 22px 20px;
+  }
+  #workshop-legacy .tool-detail h3 { font-size: 25px; line-height: 1.15; }
+  #workshop-legacy .tool-detail li { font-size: 14px; line-height: 1.45; }
+
+  #workshop-legacy .practice-lab {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 18px 14px 22px;
+    border-radius: 24px;
+  }
+  #workshop-legacy .practice-lab > * {
+    box-sizing: border-box;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  #workshop-legacy .practice-lab .ux-page-art.art-3 {
+    width: 100%;
+    margin: 0 0 12px;
+  }
+  #workshop-legacy .ux-practice-intro {
+    width: 100%;
+    padding: 20px 18px;
+    gap: 18px;
+    border-radius: 22px;
+  }
+  #workshop-legacy .ux-practice-intro h2 {
+    font-size: 29px;
+    line-height: 1.08;
+  }
+  #workshop-legacy .ux-practice-intro > div > p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  #workshop-legacy .ux-practice-intro aside {
+    gap: 8px;
+  }
+  #workshop-legacy .ux-practice-intro article {
+    min-height: 66px;
+    padding: 10px 12px;
+  }
+  #workshop-legacy .ux-practice-intro article small {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  #workshop-legacy .exercise-list,
+  #workshop-legacy .exercise-card,
+  #workshop-legacy .exercise-summary,
+  #workshop-legacy .exercise-body {
+    box-sizing: border-box;
+    width: 100%;
+  }
+  #workshop-legacy .exercise-card {
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  #workshop-legacy .exercise-summary {
+    grid-template-columns: 42px minmax(0, 1fr) 42px;
+    gap: 10px;
+    min-height: 148px;
+    padding: 16px 10px;
+    text-align: left;
+  }
+  #workshop-legacy .exercise-title { min-width: 0; }
+  #workshop-legacy .exercise-title b {
+    font-size: 17px;
+    line-height: 1.25;
+  }
+  #workshop-legacy .exercise-title p {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    margin-top: 6px;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  #workshop-legacy .exercise-time {
+    align-self: start;
+    font-size: 9px;
+    text-align: center;
+  }
+  #workshop-legacy .exercise-body {
+    gap: 14px;
+    padding: 0 10px 20px;
+  }
+  #workshop-legacy .exercise-body ol,
+  #workshop-legacy .verify-box,
+  #workshop-legacy .public-scenario {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  #workshop-legacy .verify-box,
+  #workshop-legacy .public-scenario {
+    padding: 14px;
+    border-radius: 14px;
+  }
+  #workshop-legacy .ux-exercise-downloads31 a,
+  #workshop-legacy .exercise-actions button,
+  #workshop-legacy .reveal-outcome {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 48px;
+  }
+  #workshop-legacy .ux-exercise-downloads31 a {
+    grid-template-columns: 34px minmax(0, 1fr);
+    padding: 12px;
+  }
+  #workshop-legacy .ux-exercise-downloads31 a small {
+    grid-column: 2;
+  }
+  #workshop-legacy .exercise-actions {
+    width: 100%;
+  }
+  #workshop-legacy .exercise-actions small {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .ux-drawer25 {
+    box-sizing: border-box;
+    width: min(88vw, 360px);
+    padding: 20px 16px 28px;
+  }
+  .ux-drawer25 button {
+    min-height: 46px;
+  }
+  .ux-drawer25 .ux-drawer-sub25 button {
+    min-height: 42px;
+  }
+  .help-fab {
+    right: 14px;
+    bottom: 14px;
+    width: 48px;
+    min-width: 48px;
+    height: 48px;
+    padding: 0;
+    border-radius: 50%;
+  }
+  .help-fab > span:last-child,
+  .help-fab:not(:has(span)) {
+    font-size: 0;
+  }
+  .ux-chapter25 nav {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .ux-chapter25 nav button {
+    width: 100%;
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 380px) {
+  #workshop-legacy { padding-left: 12px !important; padding-right: 12px !important; }
+  #workshop-legacy .access-copy,
+  #workshop-legacy .access-result,
+  #workshop-legacy .tool-detail > div { padding-left: 16px; padding-right: 16px; }
+  #workshop-legacy .work-cycle span { font-size: 9px; }
+}
